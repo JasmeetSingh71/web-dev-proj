@@ -12,7 +12,15 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  
+  background:linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('robert-bye-BY34glOW7wA-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Segoe UI', sans-serif;
 }
+
+
 
 header {
   background: #fff;
@@ -60,9 +68,9 @@ main {
 }
 
 
-main{
+/* main{
   background-image: url('bg\ img.jpg');
-}
+} */
 
 
 .main h2 {
