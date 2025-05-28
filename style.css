@@ -101,15 +101,18 @@ input:focus, select:focus {
     border-color: #3498db;
 }
 
-button {
-    background: #27ae60;
-    color: white;
-    font-weight: bold;
-    border: none;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+.buttons {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  
 }
+
+
 
 button:hover {
     background: #1e8449;
