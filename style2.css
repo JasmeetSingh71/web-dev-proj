@@ -164,3 +164,58 @@ footer {
   font-size: 1rem;
   
 }
+/* Dark theme fixes for gradient and text contrast */
+
+body.dark-theme {
+  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+              url('robert-bye-BY34glOW7wA-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #e0e0e0;
+}
+
+body.dark-theme header,
+body.dark-theme footer {
+  background-color: rgba(20, 20, 20, 0.9);
+  color: #e0e0e0;
+}
+
+body.dark-theme nav ul li a {
+  color: #ccc;
+}
+
+body.dark-theme nav ul li a:hover {
+  color: #90ee90;
+}
+
+body.dark-theme .btn {
+  background-color: #2e7d32;
+  color: white;
+}
+
+body.dark-theme .btn:hover {
+  background-color: #1b5e20;
+}
+
+body.dark-theme .about p,
+body.dark-theme .features ul {
+  color: #ccc;
+}
+
+body.dark-theme .features ul li {
+  text-align: center;
+}
+
+body.dark-theme .form,
+body.dark-theme input,
+body.dark-theme select,
+body.dark-theme button {
+  background-color: #222;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+body.dark-theme input::placeholder {
+  color: #aaa;
+}
