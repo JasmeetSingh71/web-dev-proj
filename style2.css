@@ -17,7 +17,7 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI';
 }
 
 
@@ -53,6 +53,25 @@ nav ul li a:hover {
   color: #4caf50;
 }
 
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* space between ul and button */
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  
+  color: #555;
+}
+
+#theme-toggle:hover {
+  color: #4caf50;
+}
+
+
 main {
   flex: 1;
   padding: 40px 20px;
@@ -66,6 +85,8 @@ main {
   align-items: center;
 
 }
+
+
 
 
 /* main{
