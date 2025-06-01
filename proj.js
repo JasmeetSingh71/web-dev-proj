@@ -10,3 +10,18 @@ toggleBtn.addEventListener('click', () => {
     toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
     localStorage.setItem('theme', newTheme);
 });
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  fetch('/session-user')
+    .then(response => response.json())
+    .then(data => {
+      if (data.username) {
+        // Logged in: hide login/register, show logout
+        document.getElementById('login-link').style.display = 'none';
+        document.getElementById('register-link').style.display = 'none';
+        // document.getElementById('logout-link').style.display = 'inline-block';
+      }
+    })
+    .catch(err => console.error('Error checking session:', err));
+});

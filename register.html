@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Booking Management</h1>
+    <nav>
+      <ul id="ul">
+        <li class="li"><a href="proj.html">Home</a></li>
+        <li class="li"><a href="booking.html">Bookings</a></li>
+        <li class="li"><a href="services.html">Services</a></li>
+        <li class="li"><a href="#">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" title="Toggle Theme">🌙</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form">
+      <h2>Create Account</h2>
+      <form action="/register" method="POST">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Choose a username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+        <input type="submit" value="Register" class="buttons">
+      </form>
+      <p>Already registered? <a href="login.html">Login here</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Booking Management. All Rights Reserved.</p>
+  </footer>
+
+  <script src="proj.js"></script>
+</body>
+</html>
