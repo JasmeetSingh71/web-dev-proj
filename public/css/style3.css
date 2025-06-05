@@ -156,3 +156,30 @@ body.dark-theme button {
 body.dark-theme input::placeholder {
   color: #aaa;
 }
+
+ .booking-table {
+      width: 90%;
+      margin: 40px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .booking-table th,
+    .booking-table td {
+      border: 1px solid #ddd;
+      padding: 10px 15px;
+      text-align: center;
+    }
+
+    .booking-table th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+
+    .table-heading {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 1.6rem;
+      color: #333;
+    }

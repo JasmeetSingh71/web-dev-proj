@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 //  User Schema
 const bookingSchema = new mongoose.Schema({
- user: String,
+ user:  String,
   name: String,
   email: String,
   date: String,
