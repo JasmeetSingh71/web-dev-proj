@@ -1,35 +1,17 @@
 const express = require('express');
-const mongoose = require('mongoose');
+
 const session = require('express-session');
+const main=require("./database")
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const path = require('path');
+const User=require("./users");
+const Booking=require("./booking");
+
+
 
 const app = express();
 const PORT = 7001;
-
-//  MongoDB URI (password is already URL-encoded)
-const MONGO_URI = 'mongodb+srv://jasmeetdb:Jasmeet%401234@bookingsite.l1vxeep.mongodb.net/user';
-
-//  MongoDB Connection
-mongoose.connect(MONGO_URI)
-  .then(() => console.log(' MongoDB Connected'))
-  .catch(err => console.error(' MongoDB Error:', err));
-
-//  User Schema
-const User = mongoose.model('User', new mongoose.Schema({
-  username: String,
-  password: String
-}));
-
-//  Booking Schema
-const Booking = mongoose.model('Booking', new mongoose.Schema({
-  user: String,
-  name: String,
-  email: String,
-  date: String,
-  service: String
-}));
 
 //  Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -61,7 +43,7 @@ app.get('/login.html', (req, res) => {
 app.post('/register', async (req, res) => {
   const existingUser = await User.findOne({ username: req.body.username });
   if (existingUser) {
-    return res.send('❌ Username already exists. Try logging in.');
+    return res.send('Username already exists. Try logging in.');
   }
 
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -74,25 +56,20 @@ app.post('/login', async (req, res) => {
   const user = await User.findOne({ username: req.body.username });
 
   if (!user) {
-    return res.send('❌ User not found. Please register first.');
+    return res.send('User not found. Please register first.');
   }
 
   const isMatch = await bcrypt.compare(req.body.password, user.password);
 
   if (!isMatch) {
-    return res.send('❌ Incorrect password.');
+    return res.send(' Incorrect password.');
   }
 
   req.session.user = user.username;
   res.redirect('/proj.html');
 });
 
-//  Logout Route
-app.get('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.redirect('/login.html');
-  });
-});
+
 
 //  API to Get Current Logged-in User
 app.get('/session-user', (req, res) => {
@@ -102,7 +79,7 @@ app.get('/session-user', (req, res) => {
 //  Booking Form Handler
 app.post('/submit', async (req, res) => {
   if (!req.session.user) {
-    return res.send("❌ Please register or log in to book a service.");
+    return res.send(" Please register or log in to book a service.");
   }
 
   const { firstname, email, date, service } = req.body;
@@ -119,6 +96,13 @@ app.post('/submit', async (req, res) => {
 });
 
 //  Start the Server
-app.listen(7001, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+
+
+main()
+  .then(()=>{
+    console.log("connected to db")
+  app.listen(PORT, ()=>{
+    console.log(`Listening at port http://localhost:${PORT}`);
+})
+  })
+.catch((err)=>console.log('MongoDB err:', err))
