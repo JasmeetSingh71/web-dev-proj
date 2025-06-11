@@ -26,25 +26,9 @@ window.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error('Error checking session:', err));
 });
 
-
-
-   const params= new URLSearchParams(window.location.search);
-
-  if (params.get("error") === "login") {
-    alert("Please register or log in to book a service.");
+ const params = new URLSearchParams(window.location.search);
+  if (params.get('error') === 'exists') {
+    alert('Username already exists. Try logging in.');
   }
 
-  if (params.get("success") === "true") {
-    alert("Booking saved successfully!");
-  }
-
-
-  const params3 = new URLSearchParams(window.location.search);
-
-if (params3.get("error") === "notfound") {
-  alert("User not found. Please register first.");
-}
-
-if (params3.get("error") === "invalid") {
-  alert("Incorrect password.");
-}
+  

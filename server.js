@@ -39,10 +39,11 @@ app.get('/login.html', (req, res) => {
 // Register Route
 app.post('/register', async (req, res) => {
   const existingUser = await User.findOne({ username: req.body.username });
-  if (existingUser) {
-    return res.send('Username already exists. Try logging in.');
+  
+   if (existingUser) {
+    return res.redirect('/register.html?error=exists');
   }
-
+ 
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
   await User.create({ username: req.body.username, password: hashedPassword });
   res.redirect('/login.html');
@@ -53,13 +54,13 @@ app.post('/login', async (req, res) => {
   const user = await User.findOne({ username: req.body.username });
 
   if (!user) {
-    return res.send('User not found. Please register first.');
+     return res.redirect('/login.html?error=notfound');
   }
 
   const isMatch = await bcrypt.compare(req.body.password, user.password);
 
   if (!isMatch) {
-    return res.send('Incorrect password.');
+    return res.redirect('/login.html?error=invalid');
   }
 
   // Save user ID and username in session
@@ -77,8 +78,10 @@ app.get('/session-user', (req, res) => {
 
 // Booking Form Handler
 app.post('/submit', async (req, res) => {
-  if (!req.session.user) {
-    return res.send("Please register or log in to book a service.");
+  
+
+   if (!req.session.user) {
+    return res.redirect('/htmlfiles/booking.html?error=login');
   }
 
   const { firstname, email, date, service } = req.body;
@@ -92,7 +95,8 @@ app.post('/submit', async (req, res) => {
     service
   });
 
-  res.send("Booking saved successfully!");
+  res.redirect('/htmlfiles/booking.html?success=true');
+
 });
 
 // Get bookings of logged-in user
