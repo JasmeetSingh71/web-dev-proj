@@ -67,17 +67,6 @@ nav {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.s-card{
-     background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 2rem;
-  width: 250px;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-
-
-}
-
 .card h3 {
   margin-bottom: 1rem;
 }
@@ -183,3 +172,35 @@ body.dark-theme input::placeholder {
       font-size: 1.6rem;
       color: #333;
     }
+
+/* Ensures card content is visible */
+body.dark-theme .card {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+}
+
+body.dark-theme .card h3,
+body.dark-theme .card p {
+  color: #e0e0e0;
+}
+
+/* Fix table visibility */
+body.dark-theme .booking-table {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+body.dark-theme .booking-table th,
+body.dark-theme .booking-table td {
+  background-color: transparent;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+/* Fix heading text */
+body.dark-theme .table-heading,
+body.dark-theme .heading h2,
+body.dark-theme .heading p {
+  color: #e0e0e0;
+}
