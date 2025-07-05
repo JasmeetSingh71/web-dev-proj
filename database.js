@@ -12,9 +12,3 @@ async function main() {
  module.exports=main;
 
 
- //  Logout Route
-// app.get('/logout', (req, res) => {
-//   req.session.destroy(() => {
-//     res.redirect('/login.html');
-//   });
-// });
