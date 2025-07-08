@@ -19,12 +19,12 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// Home Route
+// Home page
 app.get('/', (req, res) => {
   res.redirect('/htmlfiles/proj.html');
 });
 
-// Serve Register/Login Pages
+//  Register pages and login pages
 app.get('/register.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/htmlfiles/register.html'));
 });
@@ -36,7 +36,7 @@ app.get('/login.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/htmlfiles/login.html'));
 });
 
-// Register Route
+// Register handler
 app.post('/register', async (req, res) => {
   const existingUser = await User.findOne({ username: req.body.username });
   
@@ -49,7 +49,7 @@ app.post('/register', async (req, res) => {
   res.redirect('/login.html');
 });
 
-// Login Route
+// Login handler
 app.post('/login', async (req, res) => {
   const user = await User.findOne({ username: req.body.username });
 
@@ -63,7 +63,7 @@ app.post('/login', async (req, res) => {
     return res.redirect('/login.html?error=invalid');
   }
 
-  // Save user ID and username in session
+ 
   req.session.user = {
     id: user._id,
     username: user.username
@@ -86,7 +86,7 @@ app.post('/submit', async (req, res) => {
 
   const { firstname, email, date, service } = req.body;
 
-  // Save the booking with reference to logged-in user's ID
+  
   await Booking.create({
     user: req.session.user.id,
     name: firstname,
@@ -99,14 +99,14 @@ app.post('/submit', async (req, res) => {
 
 });
 
-// Get bookings of logged-in user
+
 app.get('/mybookings', async (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ message: "Not logged in" });
   }
 
   try {
-    // Find bookings only for the logged-in user
+    
     const bookings = await Booking.find({ user: req.session.user.id });
     res.json(bookings);
   } catch (err) {
@@ -114,7 +114,7 @@ app.get('/mybookings', async (req, res) => {
   }
 });
 
-// Connect to DB and Start Server
+
 main()
   .then(() => {
     console.log("Connected to DB");
